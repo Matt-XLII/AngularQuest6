@@ -1,0 +1,4 @@
+<H1 [ngStyle]="{color:isAdmin? 'red' : 'black'}">Bonjour</H1>
+<button>View</button>
+<button *ngIf="isAdmin">Edit</button>
+<button (click)="toggleAdmin()">login / logout</button>
