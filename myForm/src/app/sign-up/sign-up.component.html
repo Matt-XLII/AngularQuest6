@@ -1,0 +1,33 @@
+<form #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
+    <div>
+        Form submitted ? {{myForm.submitted}}
+        Form valid ? {{myForm.valid}}
+        Form invalid ? {{myForm.invalid}}
+      </div>
+
+    <fieldset>
+        <label for="user_name">Name</label>
+        <input id="user_name" name="user_name" type="text" [(ngModel)]="model.userName" #name="ngModel" required minlength="3" maxlength="15">
+      <div *ngIf="name.errors">
+        <span *ngIf="name.errors?.['required'] && myForm.submitted">A name is required</span>
+        <span *ngIf="name.errors?.['minlength'] && myForm.submitted">Minimum width should be 3</span>
+        <span *ngIf="name.errors?.['maxlength'] && myForm.submitted">Maximum width should be 15</span>
+      </div>
+    </fieldset>
+      
+      <fieldset>
+        <label for="user_lastname">Lastname</label>
+        <input id="user_lastname" name="user_lastname" type="text" [(ngModel)]="model.userLastname" #lastname="ngModel" required minlength="3" maxlength="15">
+        <span *ngIf="lastname.errors?.['required'] && myForm.submitted">A lastname is required</span>
+        <span *ngIf="lastname.errors?.['minlength'] && myForm.submitted">Minimum width should be 3</span>
+        <span *ngIf="lastname.errors?.['maxlength'] && myForm.submitted">Maximum width should be 15</span>
+      </fieldset>
+
+      <fieldset>
+        <label for="mail">Email</label>
+        <input id="mail" name="mail" type="email" [(ngModel)]="model.email" #email="ngModel" required email>
+        <span *ngIf="email.errors?.['required'] && myForm.submitted">Please enter a valid email adress</span>
+      </fieldset>
+    <button type="reset">Reset</button>
+    <button type="submit">Submit</button>
+</form>
